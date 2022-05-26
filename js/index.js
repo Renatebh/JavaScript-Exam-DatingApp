@@ -16,10 +16,10 @@ function getAllCharacters(array) {
 
 let charactersList = document.querySelector(".charactersList");
 // funksjonen for å vise characters
+let matchCounterTxt = document.getElementById("match-counter-txt");
 function displayCharacters(array) {
   charactersList.innerHTML = "";
   // let numberOfMatches = 0;
-  let matchCounterTxt = document.getElementById("match-counter-txt");
 
   for (let i = 0; i < array.length; i++) {
     //Buttons cards
@@ -80,13 +80,14 @@ function displayCharacters(array) {
     matchButtons[i].addEventListener("click", () => {
       let userAnswear = prompt(
         `Vil du lagre match? ja/nei 
-        Dine matcher: ${myMatchArray.length + 1} `
+        Dine matcher: ${myMatchArray.length} `
       );
       if (userAnswear.toLowerCase() == "nei") {
       } else if (userAnswear.toLowerCase() == "ja") {
         matchCounterTxt.innerHTML = `${myMatchArray.length + 1}`;
         matchCharacter(i, array);
         deleteCharacter(i, array);
+
         console.log("matchbtnarray;", array[(i, 1)]);
         // matchBtn[i].classList.add("hide");
       } else {
@@ -189,7 +190,7 @@ function filterRandomGays() {
 
 let myMatchArray = [];
 function matchCharacter(i, array) {
-  myMatchArray.push(array[i]);
+  myMatchArray.unshift(array[i]);
 
   console.log("myMatchArray:", myMatchArray);
 }
@@ -209,6 +210,7 @@ function deleteCharacter(i, array) {
   );
   if (userAnswear.toLowerCase() == "yes") {
     array.splice(i, 1);
+    matchCounterTxt.innerHTML = `${myMatchArray.length}`;
   }
   console.log(array);
 
