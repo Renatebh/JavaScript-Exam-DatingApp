@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <title>Dating app</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <button class="btn-my-matches" id="show-matches-btn">Mine matcher <span class="material-symbols-outlined"> favorite </span><span id="match-counter-txt"></span></button>
+         
+        </button>
+        <button>Min bruker<span class="material-symbols-outlined">
+person
+</span</button>
+      </nav>
+      <h1>Velkommen til easydate</h1>
+      <q><i>We make dating great again...</i></q>
+      
+    </header>
+
+<main>
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="søk etter bruker"
+          name="searchBar"
+          id="searchbar"
+        />
+      </div>
+
+      <div class="btn-container">
+        <button class="filter-btn" id="btn-gay">Find single Gays</button>
+        <button class="filter-btn" id="btn-female">Find singel Women</button>
+        <button class="filter-btn" id="btn-male">Find singel Men</button>
+      </div>
+
+      <div class="character-container">
+        <div class="charactersList"></div>
+      </div>
+
+     
+  
+</main>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
