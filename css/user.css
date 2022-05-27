@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+:root {
+  --gradient-clr: linear-gradient(to right, #e27b2d, #e0007b);
+  --font-clr: #fff;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+header {
+  background: var(--gradient-clr);
+  color: #ffff;
+  padding: 2rem 0 2rem 0;
+  text-align: center;
+  height: 19rem;
+}
+
+h1 {
+  text-align: center;
+  margin: 3rem 0 2rem 0;
+  font-size: 4rem;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-right: 2rem;
+}
+
+nav button {
+  padding: 1em;
+  border-radius: 20px;
+  border: 3px solid #fff;
+  background: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+q {
+  font-size: 1.5em;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+
+.main-container {
+  width: 25rem;
+  height: 40rem;
+  position: relative;
+  margin: 3rem;
+}
+
+.info-container,
+.user-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid brown;
+  border-radius: 10px;
+  gap: 1.4rem;
+}
+
+#firstname-input,
+#lastname-input,
+#age-input,
+#gender-input,
+#city-input,
+#interest-input {
+  padding: 0.4em;
+  border-radius: 5px;
+  border: 1px solid #e0007b;
+}
+
+#display-image {
+  width: 100%;
+  height: 180px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+}
+
+#user-image {
+  width: 300px;
+  height: 225px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+}
+
+.hide {
+  display: none;
+}

@@ -1,7 +1,9 @@
-let charactersArray = [];
+// let charactersArray = [];
 
 const loadCharacters = async () => {
-  const res = await fetch("https://randomuser.me/api/?results=200");
+  const res = await fetch(
+    "https://randomuser.me/api/?results=200&exc=cell,registered,nat"
+  );
   charactersArray = await res.json();
 
   getAllCharacters(charactersArray);
@@ -11,12 +13,12 @@ let allCharacters = [];
 function getAllCharacters(array) {
   allCharacters = array.results;
 
-  // console.log("allCharacters", allCharacters);
+  console.log("allCharacters", allCharacters);
 }
 
-let charactersList = document.querySelector(".charactersList");
 // funksjonen for å vise characters
 let matchCounterTxt = document.getElementById("match-counter-txt");
+let charactersList = document.querySelector(".charactersList");
 function displayCharacters(array) {
   charactersList.innerHTML = "";
   // let numberOfMatches = 0;
@@ -205,13 +207,13 @@ function showMatches() {
 //funksjonen for å slette bruker
 
 function deleteCharacter(i, array) {
-  let userAnswear = prompt(
-    "Do you want to delete this lover from your list? yes/no"
-  );
-  if (userAnswear.toLowerCase() == "yes") {
-    array.splice(i, 1);
-    matchCounterTxt.innerHTML = `${myMatchArray.length}`;
-  }
+  // let userAnswear = prompt(
+  //   "Do you want to delete this lover from your list? yes/no"
+  // );
+  // if (userAnswear.toLowerCase() == "yes") {
+  array.splice(i, 1);
+  matchCounterTxt.innerHTML = `${myMatchArray.length}`;
+  // }
   console.log(array);
 
   displayCharacters(array);
