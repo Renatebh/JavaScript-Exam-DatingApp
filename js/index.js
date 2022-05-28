@@ -7,13 +7,13 @@ const loadCharacters = async () => {
   charactersArray = await res.json();
 
   getAllCharacters(charactersArray);
-  // console.log("charactersarray: ", charactersArray);
+  console.log("charactersarray: ", charactersArray);
 };
 let allCharacters = [];
 function getAllCharacters(array) {
   allCharacters = array.results;
 
-  console.log("allCharacters", allCharacters);
+  // console.log("allCharacters", allCharacters);
 }
 
 // funksjonen for å vise characters
@@ -77,19 +77,22 @@ function displayCharacters(array) {
       matchBtn,
       deleteBtn
     );
+  }
 
-    let matchButtons = document.querySelectorAll(".match-btn");
-    matchButtons[i].addEventListener("click", () => {
+  // Hente match button og sende bruker til matcharray
+  let matchBtn = document.querySelectorAll(".match-btn");
+  for (let i = 0; i < matchBtn.length; i++) {
+    matchBtn[i].addEventListener("click", () => {
       let userAnswear = prompt(
         `Vil du lagre match? ja/nei 
         Dine matcher: ${myMatchArray.length} `
       );
-      if (userAnswear.toLowerCase() == "nei") {
-      } else if (userAnswear.toLowerCase() == "ja") {
+      if (userAnswear.toLowerCase() == "ja") {
         matchCounterTxt.innerHTML = `${myMatchArray.length + 1}`;
         matchCharacter(i, array);
         deleteCharacter(i, array);
-
+        matchBtn[i].classList.add("hide");
+      } else if (userAnswear.toLowerCase() == "nei") {
         console.log("matchbtnarray;", array[(i, 1)]);
         // matchBtn[i].classList.add("hide");
       } else {
@@ -97,34 +100,6 @@ function displayCharacters(array) {
       }
     });
   }
-  // const htmlString = allCharacters
-  //   .map((character) => {
-  //     let characterImg = character.picture.large;
-  //     let characterName = character.name.first;
-  //     let characterNameLast = character.name.last;
-  //     let characterGender = character.gender;
-  //     let characterAge = character.dob.age;
-  //     let characterEmail = character.email;
-  //     let characterLocation = character.location.city;
-
-  //     return `
-  //     <li class"character-card">
-  //     <div>
-  //     <img src="${characterImg}"/>
-  //     </div>
-  //     <span>${characterName} ${characterNameLast}</span>
-  //     <span>|</span>
-  //     <span>${characterGender}</span>
-  //     <p>${characterAge}</p>
-  //     <p>${characterEmail}</p>
-  //     <p>${characterLocation}</p>
-
-  //     <button id="match-btn" onclick="matchUser()">Match</button>
-  //     </li>
-  //     `;
-  //   })
-  //   .join();
-  // charactersList.innerHTML = htmlString;
 }
 
 // function for searching for users

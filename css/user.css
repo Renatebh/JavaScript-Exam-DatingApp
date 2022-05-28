@@ -81,7 +81,7 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0.8;
+
   display: flex;
   flex-direction: column;
   padding: 1rem;

@@ -28,9 +28,14 @@ h1 {
 
 nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 10px;
   margin-right: 2rem;
+}
+
+.nav-btn-container {
+  display: flex;
+  gap: 10px;
 }
 
 nav button {
