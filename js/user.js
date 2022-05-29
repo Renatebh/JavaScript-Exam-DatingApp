@@ -28,10 +28,8 @@ const saveBtn = document
   .addEventListener("click", showInformation);
 let infoContainer = document.querySelector(".info-container");
 let userContainer = document.querySelector(".user-container");
-// userContainer.style.display = "none";
+
 function showInformation() {
-  // userContainer.style.display = "grid";
-  // infoContainer.style.display = "none";
   userContainer.classList.remove("hide");
   infoContainer.classList.add("hide");
   //value from input
@@ -54,8 +52,6 @@ function showInformation() {
 let editBtn = document
   .getElementById("edit-btn")
   .addEventListener("click", () => {
-    // userContainer.style.display = "none";
-    // infoContainer.style.display = "flex";
     userContainer.classList.add("hide");
     infoContainer.classList.remove("hide");
   });
