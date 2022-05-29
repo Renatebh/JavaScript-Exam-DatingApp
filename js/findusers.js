@@ -7,7 +7,7 @@ const loadCharacters = async () => {
   charactersArray = await res.json();
 
   getAllCharacters(charactersArray);
-  console.log("charactersarray: ", charactersArray);
+  // console.log("charactersarray: ", charactersArray);
 };
 let allCharacters = [];
 function getAllCharacters(array) {
@@ -168,15 +168,18 @@ function filterRandomGays() {
 let myMatchArray = [];
 function matchCharacter(i, array) {
   myMatchArray.unshift(array[i]);
-
-  console.log("myMatchArray:", myMatchArray);
+  // console.log("myMatchArray:", myMatchArray);
 }
 let showMatchesBtn = document
   .getElementById("show-matches-btn")
   .addEventListener("click", showMatches);
 
 function showMatches() {
-  displayCharacters(myMatchArray);
+  localStorage.setItem("myMatch", JSON.stringify(myMatchArray));
+  const data = JSON.parse(localStorage.getItem("myMatch"));
+  console.log(localStorage);
+  console.log(data);
+  displayCharacters(data);
 }
 
 //funksjonen for å slette bruker
@@ -189,7 +192,7 @@ function deleteCharacter(i, array) {
   array.splice(i, 1);
   matchCounterTxt.innerHTML = `${myMatchArray.length}`;
   // }
-  console.log(array);
+  // console.log(array);
 
   displayCharacters(array);
 }
