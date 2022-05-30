@@ -5,13 +5,6 @@
   list-style: none;
 }
 
-body {
-  width: 100%;
-  height: 100vh;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-
 :root {
   --gradient-clr: linear-gradient(to right, #e27b2d, #e0007b);
   --font-clr: #ffff;
@@ -45,10 +38,17 @@ body {
   border: none;
 }
 
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 header {
   background: var(--gradient-clr);
   color: #ffff;
-  padding: 2rem;
+  padding: 2rem 0 2rem 0;
   text-align: center;
   height: 23rem;
 }
@@ -61,14 +61,9 @@ h1 {
 
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 10px;
   margin-right: 2rem;
-}
-
-.nav-btn-container {
-  display: flex;
-  gap: 10px;
 }
 
 nav button {
@@ -88,75 +83,104 @@ nav a {
   text-decoration: none;
 }
 
-main {
-  width: 100%;
+q {
+  font-size: 1.5em;
 }
 
-.search-container {
+.start-btn-container {
+  padding: 1rem;
   display: flex;
   justify-content: center;
 }
 
-.search-container > input {
-  margin-top: 2rem;
-  width: 40%;
-  padding: 1em;
-  border-radius: 20px;
-}
-
-.btn-container {
-  margin-top: 3rem;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.btn-container > button {
-  padding: 1em;
+.start-game,
+.try-again {
+  padding: 1.5em;
   border-radius: 20px;
   border: 3px solid #e0007b;
   background: none;
   color: #e0007b;
   font-weight: bold;
   cursor: pointer;
+  margin: 2rem;
 }
 
-.charactersList {
-  margin-top: 4rem;
-  width: 100%;
+.start-game {
+  background-color: #e0007b;
+  color: #fff;
+}
+
+main {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  align-items: center;
+  flex-direction: column;
+  margin: 2rem 0 4rem 0;
+  gap: 2rem;
+  height: 30rem;
 }
-.card {
-  width: 300px;
-  height: 350px;
+
+.hide {
+  display: none;
+}
+
+.question-container {
+  width: 30rem;
+  margin-bottom: 10rem;
+}
+
+h2 {
+  text-align: center;
+}
+
+input {
+  margin-top: 0.7rem;
+}
+
+.quest-one,
+.quest-two,
+.quest-tree,
+.celebrity-card {
+  width: 100%;
+
   border-radius: 5px;
   background-color: #d4d4d4;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
   overflow: hidden;
 }
 
-.profile-top {
-  background: var(--gradient-clr);
+.question-container label {
+  margin: 1rem;
+}
+
+.btn {
+  margin-top: 2rem;
+}
+
+.quest {
+  margin-bottom: 2rem;
+}
+
+.celebrity-card .celebrity-img {
+  width: 50%;
+}
+
+.celebrity-card {
+  display: flex;
+}
+
+.card-info {
+  background-color: #e0007b;
+  width: 100%;
+  text-align: center;
   padding: 1rem;
-  text-align: center;
 }
 
-.profile-img {
-  border-radius: 50%;
-  border: 5px solid #ffff;
+.card-name {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-.profile-bottom {
-  text-align: center;
-}
-
-.match-container {
-  width: 80%;
-  height: 400px;
-}
-
-.hide {
-  display: none;
+.card-text {
+  font-size: 1rem;
 }

@@ -1,0 +1,37 @@
+[
+  {
+    "image": "./img/dean.jpg",
+    "name": "James Dean",
+    "text": "Du lingner på James Dean. Din utråling er forbløffende! "
+  },
+  {
+    "image": "./img/einstein.jpg",
+    "name": "Albert Einstein",
+    "text": "Du ligner på Albert Einstein. Kan du bli smartere?"
+  },
+  {
+    "image": "./img/hepburn.jpg",
+    "name": "Audrey Hepburn",
+    "text": "du ligner på Audrey Hepburn. Like elegant og sofistikert som deg er sjeldent."
+  },
+  {
+    "image": "./img/jolie.jpg",
+    "name": "Angelina Jolie",
+    "text": "du lingner på Angelina Jolie. Du ståler av skjønnhet og empati."
+  },
+  {
+    "image": "./img/monroe.jpg",
+    "name": "Marilyn Monroe",
+    "text": "du linger på Marilyn Monroe. Elegante sexbombe som de skal man lete lenge etter. "
+  },
+  {
+    "image": "./img/pitt.jpg",
+    "name": "Brad Pitt",
+    "text": "du lingner på Brad Pitt. Alle vil ha en bit av deg!"
+  },
+  {
+    "image": "./img/presley.jpg",
+    "name": "Elvis Presley",
+    "text": "du lingner på Elvis Presley. Du en stjerne!"
+  }
+]

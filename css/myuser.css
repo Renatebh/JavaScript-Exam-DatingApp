@@ -7,7 +7,29 @@
 
 :root {
   --gradient-clr: linear-gradient(to right, #e27b2d, #e0007b);
-  --font-clr: #fff;
+  --font-clr: #ffff;
+  --font-clr-dark: rgb(0, 0, 0);
+  --font-clr-light: #ffff;
+  --primary-clr: #ffff;
+  --secondary-clr: rgb(225, 225, 225);
+  --accent-clr: #e0007b;
+}
+
+.darkmode {
+  --gradient-clr: linear-gradient(to right, #8d8d8d, #000000);
+  --font-clr: #ffff;
+  --font-clr-dark: #ffff;
+  --font-clr-light: rgb(0, 0, 0);
+  --primary-clr: #000000;
+  --secondary-clr: rgb(208, 208, 208);
+  --accent-clr: #e27b2d;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+  margin-bottom: 10px;
 }
 
 body {

@@ -12,7 +12,35 @@ body {
 
 :root {
   --gradient-clr: linear-gradient(to right, #e27b2d, #e0007b);
-  --font-clr: #fff;
+  --font-clr: #ffff;
+  --font-clr-dark: rgb(0, 0, 0);
+  --font-clr-light: #ffff;
+  --primary-clr: #ffff;
+  --secondary-clr: rgb(225, 225, 225);
+  --accent-clr: #e0007b;
+}
+
+.darkmode {
+  --gradient-clr: linear-gradient(to right, #8d8d8d, #000000);
+  --font-clr: #ffff;
+  --font-clr-dark: #ffff;
+  --font-clr-light: rgb(0, 0, 0);
+  --primary-clr: #000000;
+  --secondary-clr: rgb(208, 208, 208);
+  --accent-clr: #e27b2d;
+}
+
+.toggle-container {
+  padding: 4rem 1rem 0 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#darkmode-toggle {
+  background-color: transparent;
+  color: #fff;
+  border: none;
 }
 
 h1 {
@@ -22,10 +50,11 @@ h1 {
 
 .container {
   width: 25rem;
-  background-color: #fff;
-
+  background-color: var(--primary-clr);
   padding: 2rem;
   border-radius: 10px;
+  margin-bottom: 2rem;
+  color: var(--font-clr-dark);
 }
 
 form {
@@ -42,14 +71,18 @@ form {
 
 form > input {
   padding: 0.8rem;
-  background-color: rgb(219, 219, 219);
-  border: none;
+  background-color: var(--secondary-clr);
+  border: 1px solid black;
   border-radius: 10px;
+}
+
+input[type="password"] {
+  background-color: var(--secondary-clr);
 }
 
 form > button {
   padding: 1rem;
-  background-color: #e0007b;
+  background-color: var(--accent-clr);
   border: none;
   margin-top: 2em;
   border-radius: 10px;

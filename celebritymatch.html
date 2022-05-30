@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link rel="stylesheet" href="css/celebritymatch.css" />
+    <title>Kjendis Match</title>
+  </head>
+  <body>
+    <header>
+      <div class="toggle-container">
+        <button id="darkmode-toggle">
+          <span class="material-symbols-outlined"> dark_mode </span>
+        </button>
+      </div>
+      <nav>
+        <a
+          href="./index.html
+        "
+          ><button class="btn-my">
+            Logg ut<span class="material-symbols-outlined"> logout </span>
+          </button></a
+        >
+
+        <a href="./myuser.html"
+          ><button class="btn-my">
+            Min bruker<span class="material-symbols-outlined">person </span>
+          </button></a
+        >
+        <a
+          href="./findusers.html
+        "
+          ><button class="btn-my">
+            Finn dater<span class="material-symbols-outlined">
+              person_search
+            </span>
+          </button></a
+        >
+      </nav>
+      <h1>Kjendis match</h1>
+      <q><i>Hvem kjendis ligner du på?</i></q>
+    </header>
+
+    <div class="start-btn-container">
+      <button class="start-game">Start</button>
+      <button class="try-again hide">Prøv igjen</button>
+    </div>
+
+    <main>
+      <!-- start spillet -->
+      <div class="question-container">
+        <!-- spørsmål 1 -->
+        <div class="quest-one hide">
+          <h2 class="quest">Hvordan er du når du våkner?</h2>
+          <input type="radio" name="alt1" />
+          <label for="alt1">Tired</label>
+          <br />
+          <input type="radio" name="alt2" />
+          <label for="alt2">Morgen gretten</label>
+          <br />
+          <input type="radio" name="alt3" />
+          <label for="alt3">Full av krutt</label>
+          <br />
+          <button class="show-quest2 btn">Neste</button>
+        </div>
+        <!-- spørsmål 2 -->
+        <div class="quest-two hide">
+          <h2 class="quest">Hvordan er du når du på skole/jobb?</h2>
+          <input type="radio" name="alt1" />
+          <label for="alt1">Unnasluntrer</label>
+          <br />
+          <input type="radio" name="alt2" />
+          <label for="alt2">Veldig engasjert</label>
+          <br />
+          <input type="radio" name="alt3" />
+          <label for="alt3">Sjefens favoritt</label>
+          <br />
+          <button class="show-quest3 btn">Neste</button>
+        </div>
+        <div class="quest-tree hide">
+          <h2 class="quest">Hvordan er du når du på fest?</h2>
+          <input type="radio" name="alt1" />
+          <label for="alt1">Går ikke på fest</label>
+          <br />
+          <input type="radio" name="alt2" />
+          <label for="alt2">Snakker kun med noen få</label>
+          <br />
+          <input type="radio" name="alt3" />
+          <label for="alt3">Festens midtpunkt</label>
+          <br />
+          <button id="show-celebrity">Vis kjendis match</button>
+        </div>
+        <!-- <button class="try-again">Prøv igjen</button> -->
+        <!-- kjendis container -->
+        <div class="celebrity-container"></div>
+      </div>
+    </main>
+
+    <script src="./js/celebritymatch.js"></script>
+    <script src="./js/darkmode.js"></script>
+  </body>
+</html>
