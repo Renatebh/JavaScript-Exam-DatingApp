@@ -36,7 +36,6 @@ function displayCharacters(array) {
     matchBtn.classList.add("match-btn");
     matchBtn.innerText = "Match";
 
-    // elemntene i kortene
     let card = document.createElement("div");
     card.classList.add("card");
 
@@ -84,19 +83,17 @@ function displayCharacters(array) {
   for (let i = 0; i < matchBtn.length; i++) {
     matchBtn[i].addEventListener("click", () => {
       let userAnswear = prompt(
-        `Vil du lagre match? ja/nei 
-        Dine matcher: ${myMatchArray.length} `
+        `Vil du lagre match? skriv ja 
+       Dine matcher: ${myMatchArray.length} `
       );
+      if (userAnswear === null) {
+        return;
+      }
       if (userAnswear.toLowerCase() == "ja") {
         matchCounterTxt.innerHTML = `${myMatchArray.length + 1}`;
         matchCharacter(i, array);
         deleteCharacter(i, array);
         matchBtn[i].classList.add("hide");
-      } else if (userAnswear.toLowerCase() == "nei") {
-        console.log("matchbtnarray;", array[(i, 1)]);
-        // matchBtn[i].classList.add("hide");
-      } else {
-        alert("Du må skrive ja for å lagre");
       }
     });
   }
@@ -114,7 +111,9 @@ searchBar.addEventListener("keyup", (e) => {
     let filteredUsers = allCharacters.filter((character) => {
       return (
         character.name.first.toLowerCase().includes(searchString) +
-        character.name.last.toLowerCase().includes(searchString)
+        character.name.last.toLowerCase().includes(searchString) +
+        character.dob.age.toString().includes(searchString) +
+        character.location.city.toLowerCase().includes(searchString)
       );
     });
     // console.log(filteredUsers);
@@ -151,7 +150,7 @@ function filterGenderMale() {
     return data.gender == "male";
   });
   displayCharacters(maleArray);
-  // console.log("malearray", maleArray);
+  console.log("malearray", maleArray);
 }
 
 function filterRandomGays() {
@@ -175,13 +174,64 @@ let showMatchesBtn = document
   .addEventListener("click", showMatches);
 
 function showMatches() {
-  localStorage.setItem("myMatch", JSON.stringify(myMatchArray));
-  const data = JSON.parse(localStorage.getItem("myMatch"));
-  console.log(localStorage);
-  console.log(data);
-  displayCharacters(data);
+  // localStorage.setItem("myMatch", JSON.stringify(myMatchArray));
+  // const data = JSON.parse(localStorage.getItem("myMatch"));
+  // console.log(localStorage);
+  // console.log(data);
+  displayMatches(myMatchArray);
 }
 
+let matchList = document.querySelector(".match-list");
+
+function displayMatches(array) {
+  charactersList.innerHTML = "";
+  matchList.innerHTML = "";
+
+  for (let i = 0; i < array.length; i++) {
+    let card = document.createElement("div");
+    let profileTop = document.createElement("div");
+    let profileBottom = document.createElement("div");
+    let profileImg = document.createElement("img");
+    let characterName = document.createElement("p");
+    let characterAge = document.createElement("p");
+    let profileEmail = document.createElement("p");
+    let profileLocation = document.createElement("p");
+    let profileBtn = document.createElement("button");
+    let profilePhone = document.createElement("p");
+
+    card.classList.add("card");
+    profileTop.classList.add("profile-top");
+    profileTop.classList.add("profile-bottom");
+    profileImg.classList.add("profile-img");
+    characterName.classList.add("character-name");
+    characterAge.classList.add("character-age");
+    profileEmail.classList.add("profile-email");
+    profileLocation.classList.add("profile-location");
+    profilePhone.classList.add("profile-phone");
+    profileBtn.classList.add("profile-btn");
+
+    characterName.innerText =
+      array[i].name.first + " " + array[i].name.last + " | " + array[i].gender;
+    profileImg.src = array[i].picture.large;
+    characterAge.innerText = "Age: " + array[i].dob.age;
+    profileEmail.innerText = "📧 " + array[i].email;
+    profileLocation.innerText = "📍 " + array[i].location.city;
+    profileBtn.innerHTML = "Sjekk meg";
+    profilePhone.innerText = "📞" + array[i].phone;
+
+    charactersList.append(card);
+    card.append(profileTop, profileBottom);
+    profileTop.append(profileImg);
+    profileBottom.append(
+      characterName,
+      characterAge,
+      profileEmail,
+      profilePhone,
+      profileLocation,
+      profileBtn
+    );
+  }
+}
 //funksjonen for å slette bruker
 
 function deleteCharacter(i, array) {
@@ -191,8 +241,6 @@ function deleteCharacter(i, array) {
   // if (userAnswear.toLowerCase() == "yes") {
   array.splice(i, 1);
   matchCounterTxt.innerHTML = `${myMatchArray.length}`;
-  // }
-  // console.log(array);
 
   displayCharacters(array);
 }

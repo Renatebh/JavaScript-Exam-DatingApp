@@ -47,7 +47,7 @@ body {
 
 header {
   background: var(--gradient-clr);
-  color: #ffff;
+  color: var(--font-clr);
   padding: 2rem;
   text-align: center;
   height: 23rem;
@@ -74,9 +74,9 @@ nav {
 nav button {
   padding: 1em;
   border-radius: 20px;
-  border: 3px solid #fff;
+  border: 3px solid var(--font-clr);
   background: none;
-  color: #fff;
+  color: var(--font-clr);
   font-weight: bold;
   cursor: pointer;
   display: flex;
@@ -113,9 +113,9 @@ main {
 .btn-container > button {
   padding: 1em;
   border-radius: 20px;
-  border: 3px solid #e0007b;
+  border: 3px solid var(--accent-clr);
   background: none;
-  color: #e0007b;
+  color: var(--accent-clr);
   font-weight: bold;
   cursor: pointer;
 }
@@ -135,6 +135,27 @@ main {
   background-color: #d4d4d4;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
   overflow: hidden;
+  text-align: center;
+}
+
+.match-btn,
+.delete-btn,
+.profile-btn {
+  padding: 0.5rem;
+  margin: 2em 1em 0 1em;
+  width: 7em;
+  border: 3px solid var(--accent-clr);
+  font-weight: bold;
+}
+
+.match-btn {
+  background-color: var(--accent-clr);
+  color: var(--font-clr);
+}
+
+.delete-btn {
+  border: 3px solid var(--accent-clr);
+  color: var(--accent-clr);
 }
 
 .profile-top {
@@ -145,7 +166,7 @@ main {
 
 .profile-img {
   border-radius: 50%;
-  border: 5px solid #ffff;
+  border: 5px solid var(--font-clr-light);
 }
 
 .profile-bottom {
