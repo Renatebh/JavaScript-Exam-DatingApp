@@ -15,7 +15,9 @@
   <body>
     <header>
       <div class="toggle-container">
-        <button id="darkmode-toggle">dark</button>
+        <button id="darkmode-toggle">
+          <span class="material-symbols-outlined"> dark_mode </span>
+        </button>
       </div>
       <nav>
         <a
@@ -49,13 +51,14 @@
     <main>
       <div class="main-container">
         <div class="info-container">
+          <h3>Legg inn brukerinformasjon</h3>
           <input
             type="file"
             id="image-input"
             accept="image/jpeg, image/png, image/jpg"
           />
-          <div id="display-image"></div>
-          <button id="deleteImage">Slett bilde</button>
+          <img id="user-image" />
+
           <input
             id="firstname-input"
             type="text"
@@ -97,12 +100,12 @@
             <option value="male">Male</option>
             <option value="all">All</option>
           </select>
-          <input id="save-btn" type="submit" value="Save" />
+          <button id="save-btn" onclick="showInformation()">Lagre</button>
         </div>
 
         <div class="user-container hide">
           <h2>Din bruker</h2>
-          <div id="user-image"></div>
+          <img id="user-image-card" />
           <div class="name-container">
             <span id="user-fname">Name</span>
             <span id="user-lname">Lastname</span>
@@ -111,7 +114,7 @@
           <p id="user-gender">Gender</p>
           <p id="user-location">Location</p>
           <p id="user-interest-in"></p>
-          <input id="edit-btn" type="submit" value="Edit" />
+          <button id="edit-btn" onclick="editUser()">Rediger</button>
         </div>
       </div>
     </main>

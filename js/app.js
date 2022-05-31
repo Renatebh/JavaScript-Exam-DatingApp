@@ -3,6 +3,8 @@ function signup(e) {
   let email = document.getElementById("email").value;
   let username = document.getElementById("username").value;
   let pass = document.getElementById("password").value;
+  let conPass = document.getElementById("con-password").value;
+  let errorMessage = document.getElementById("error-message");
 
   let user = {
     email: email,
@@ -13,14 +15,18 @@ function signup(e) {
   let json = JSON.stringify(user);
   localStorage.setItem(username, json);
   console.log("user added");
-  window.location.href = "index.html";
+  if (pass === conPass) {
+    window.location.href = "index.html";
+  } else if (pass !== conPass) {
+    errorMessage.innerText = "Passwords must be the same";
+  }
 }
 
 function loginUser(e) {
   event.preventDefault();
   let username = document.getElementById("username").value;
   let pass = document.getElementById("password").value;
-  let result = document.getElementById("result");
+  let errorMessage = document.getElementById("error-message-login");
 
   let user = localStorage.getItem(username);
 
@@ -28,11 +34,10 @@ function loginUser(e) {
   console.log(data);
 
   if ((user = null)) {
-    result.innerHTML = "wrong username";
+    alert("wrong username");
   } else if (username == data.username && pass == data.password) {
-    alert("Logg inn success!");
     window.location.href = "myuser.html";
   } else {
-    alert("wrong password");
+    errorMessage.innerText = "Feil passord";
   }
 }

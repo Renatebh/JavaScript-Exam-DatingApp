@@ -1,31 +1,45 @@
 // add image to page
-const imageInput = document.querySelector("#image-input");
-var uploaded_image = "";
+// const imageInput = document.querySelector("#image-input");
+// let uploaded_image = "";
 
-imageInput.addEventListener("change", function () {
+// imageInput.addEventListener("change", function () {
+//   const reader = new FileReader();
+//   reader.addEventListener("load", () => {
+//     uploaded_image = reader.result;
+//     document.querySelector(
+//       "#display-image"
+//     ).style.backgroundImage = `url(${uploaded_image})`;
+//     document.querySelector(
+//       "#user-image"
+//     ).style.backgroundImage = `url(${uploaded_image})`;
+//   });
+//   reader.readAsDataURL(this.files[0]);
+// });
+
+// add & save image
+document.querySelector("#image-input").addEventListener("change", function () {
   const reader = new FileReader();
+
   reader.addEventListener("load", () => {
-    uploaded_image = reader.result;
-    document.querySelector(
-      "#display-image"
-    ).style.backgroundImage = `url(${uploaded_image})`;
-    document.querySelector(
-      "#user-image"
-    ).style.backgroundImage = `url(${uploaded_image})`;
+    localStorage.setItem("recent-image", reader.result);
+    window.location.href = "myuser.html";
   });
   reader.readAsDataURL(this.files[0]);
 });
-
-const deleteImage = document
-  .querySelector("#deleteImage")
-  .addEventListener("click", () => {
-    document.querySelector("#display-image").style.backgroundImage = "none";
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  const recentImageDataUrl = localStorage.getItem("recent-image");
+  if (recentImageDataUrl) {
+    document
+      .querySelector("#user-image")
+      .setAttribute("src", recentImageDataUrl);
+    document
+      .querySelector("#user-image-card")
+      .setAttribute("src", recentImageDataUrl);
+  }
+});
 
 // Show user information
-const saveBtn = document
-  .getElementById("save-btn")
-  .addEventListener("click", showInformation);
+
 let infoContainer = document.querySelector(".info-container");
 let userContainer = document.querySelector(".user-container");
 
@@ -49,9 +63,8 @@ function showInformation() {
     "user-location"
   ).innerText = `Interest in: ${selectionInput}`;
 }
-let editBtn = document
-  .getElementById("edit-btn")
-  .addEventListener("click", () => {
-    userContainer.classList.add("hide");
-    infoContainer.classList.remove("hide");
-  });
+
+function editUser() {
+  userContainer.classList.add("hide");
+  infoContainer.classList.remove("hide");
+}

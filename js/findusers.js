@@ -1,17 +1,17 @@
-// let charactersArray = [];
-
+let charactersArray = [];
 const loadCharacters = async () => {
   const res = await fetch(
-    "https://randomuser.me/api/?results=200&exc=cell,registered,nat"
+    "https://randomuser.me/api/?results=50&exc=cell,registered,nat"
   );
-  charactersArray = await res.json();
 
+  charactersArray = await res.json();
+  // console.log(charactersArray.results);
   getAllCharacters(charactersArray);
-  // console.log("charactersarray: ", charactersArray);
 };
+
 let allCharacters = [];
-function getAllCharacters(array) {
-  allCharacters = array.results;
+function getAllCharacters(charactersArray) {
+  allCharacters = charactersArray.results;
 
   // console.log("allCharacters", allCharacters);
 }
@@ -57,9 +57,9 @@ function displayCharacters(array) {
     characterAge.classList.add("character-age");
     characterAge.innerText = "Age: " + array[i].dob.age;
 
-    let profileEmail = document.createElement("p");
-    profileEmail.classList.add("profile-email");
-    profileEmail.innerText = "📧 " + array[i].email;
+    // let profileEmail = document.createElement("p");
+    // profileEmail.classList.add("profile-email");
+    // profileEmail.innerText = "📧 " + array[i].email;
 
     let profileLocation = document.createElement("p");
     profileLocation.classList.add("profile-location");
@@ -71,7 +71,7 @@ function displayCharacters(array) {
     profileBottom.append(
       characterName,
       characterAge,
-      profileEmail,
+      // profileEmail,
       profileLocation,
       matchBtn,
       deleteBtn
@@ -90,10 +90,12 @@ function displayCharacters(array) {
         return;
       }
       if (userAnswear.toLowerCase() == "ja") {
-        matchCounterTxt.innerHTML = `${myMatchArray.length + 1}`;
-        matchCharacter(i, array);
+        matchCounterTxt.innerHTML = `${myMatchArray.length}`;
+        matchCharacter(array, i);
+        console.log(myMatchArray);
         deleteCharacter(i, array);
         matchBtn[i].classList.add("hide");
+        initMap(myMatchArray, i);
       }
     });
   }
@@ -150,7 +152,7 @@ function filterGenderMale() {
     return data.gender == "male";
   });
   displayCharacters(maleArray);
-  console.log("malearray", maleArray);
+  // console.log("malearray", maleArray);
 }
 
 function filterRandomGays() {
@@ -165,8 +167,9 @@ function filterRandomGays() {
 //Funksjonen for å matche bruker å vise bruker
 
 let myMatchArray = [];
-function matchCharacter(i, array) {
+function matchCharacter(array, i) {
   myMatchArray.unshift(array[i]);
+  // initMap(myMatchArray);
   // console.log("myMatchArray:", myMatchArray);
 }
 let showMatchesBtn = document
@@ -174,11 +177,8 @@ let showMatchesBtn = document
   .addEventListener("click", showMatches);
 
 function showMatches() {
-  // localStorage.setItem("myMatch", JSON.stringify(myMatchArray));
-  // const data = JSON.parse(localStorage.getItem("myMatch"));
-  // console.log(localStorage);
-  // console.log(data);
   displayMatches(myMatchArray);
+  // initMap(myMatchArray);
 }
 
 let matchList = document.querySelector(".match-list");
@@ -197,6 +197,7 @@ function displayMatches(array) {
     let profileEmail = document.createElement("p");
     let profileLocation = document.createElement("p");
     let profileBtn = document.createElement("button");
+    let profileBtnHide = document.createElement("button");
     let profilePhone = document.createElement("p");
 
     card.classList.add("card");
@@ -209,6 +210,7 @@ function displayMatches(array) {
     profileLocation.classList.add("profile-location");
     profilePhone.classList.add("profile-phone");
     profileBtn.classList.add("profile-btn");
+    profileBtnHide.classList.add("profile-btn-hide");
 
     characterName.innerText =
       array[i].name.first + " " + array[i].name.last + " | " + array[i].gender;
@@ -216,7 +218,8 @@ function displayMatches(array) {
     characterAge.innerText = "Age: " + array[i].dob.age;
     profileEmail.innerText = "📧 " + array[i].email;
     profileLocation.innerText = "📍 " + array[i].location.city;
-    profileBtn.innerHTML = "Sjekk meg";
+    profileBtn.innerHTML = "Kart";
+    profileBtnHide.innerHTML = "hide";
     profilePhone.innerText = "📞" + array[i].phone;
 
     charactersList.append(card);
@@ -228,12 +231,64 @@ function displayMatches(array) {
       profileEmail,
       profilePhone,
       profileLocation,
-      profileBtn
+      profileBtn,
+      profileBtnHide
     );
+
+    let map = document.querySelector(".map");
+    let profileBtns = document.querySelectorAll(".profile-btn");
+    profileBtns[i].addEventListener("click", () => {
+      initMap();
+      map.classList.remove("hide");
+    });
+  }
+  // kart
+  let profileBtnHide = document.querySelectorAll(".profile-btn-hide");
+
+  // for (let i = 0; i < profileBtn.length; i++) {
+  //   profileBtn[i].addEventListener("click", () => {});
+  // }
+
+  for (let i = 0; i < profileBtnHide.length; i++) {
+    profileBtnHide[i].addEventListener("click", () => {
+      map.classList.add("hide");
+    });
   }
 }
-//funksjonen for å slette bruker
 
+// få ut kart
+function initMap() {
+  console.log(myMatchArray);
+  // map options
+
+  for (let i = 0; i < myMatchArray.length; i++) {
+    //new map
+    // let latitude = parseFloat(myMatchArray[i].location.coordinates.latitude);
+
+    // let longitude = parseFloat(myMatchArray[i].location.coordinates.longitude);
+
+    var options = {
+      zoom: 6,
+      center: {
+        lat: parseFloat(myMatchArray[i].location.coordinates.latitude),
+        lng: parseFloat(myMatchArray[i].location.coordinates.longitude),
+      },
+    };
+
+    let map = new google.maps.Map(document.querySelector(".map"), options);
+    let marker = new google.maps.Marker({
+      position: {
+        lat: parseFloat(myMatchArray[i].location.coordinates),
+        lng: parseFloat(myMatchArray[i].location.coordinates.longitude),
+      },
+      map: map,
+      icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    });
+    console.log(latitude, longitude);
+  }
+}
+
+//funksjonen for å slette bruker
 function deleteCharacter(i, array) {
   // let userAnswear = prompt(
   //   "Do you want to delete this lover from your list? yes/no"
