@@ -28,7 +28,7 @@
           </button></a
         >
         <a
-          href="./findusers.html
+          href="./celebritymatch.html
         "
           ><button class="btn-my">
             Kjendis Match<span class="material-symbols-outlined"> grade </span>
@@ -45,7 +45,6 @@
         >
       </nav>
       <h1>My user</h1>
-      <q><i>Get back in the game ...</i></q>
     </header>
 
     <main>
@@ -75,9 +74,9 @@
           />
           <input
             id="age-input"
-            type="date"
+            type="text"
             name="age"
-            placeholder="Age"
+            placeholder="Year of birth"
             required
           />
           <select name="gender" id="gender-input">
@@ -94,12 +93,6 @@
             required
           />
 
-          <select name="interest" id="interest-input">
-            <option value="none">Interest in..</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-            <option value="all">All</option>
-          </select>
           <button id="save-btn" onclick="showInformation()">Lagre</button>
         </div>
 
@@ -107,13 +100,13 @@
           <h2>Din bruker</h2>
           <img id="user-image-card" />
           <div class="name-container">
-            <span id="user-fname">Name</span>
-            <span id="user-lname">Lastname</span>
+            <span id="first-name">Name</span>
+            <span id="last-name">Lastname</span>
           </div>
-          <p id="user-age">Age</p>
-          <p id="user-gender">Gender</p>
-          <p id="user-location">Location</p>
-          <p id="user-interest-in"></p>
+          <p id="age">Age</p>
+          <p id="gender">Gender</p>
+          <p id="city">Location</p>
+
           <button id="edit-btn" onclick="editUser()">Rediger</button>
         </div>
       </div>

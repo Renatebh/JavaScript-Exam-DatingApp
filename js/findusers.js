@@ -5,15 +5,13 @@ const loadCharacters = async () => {
   );
 
   charactersArray = await res.json();
-  // console.log(charactersArray.results);
+
   getAllCharacters(charactersArray);
 };
 
 let allCharacters = [];
 function getAllCharacters(charactersArray) {
   allCharacters = charactersArray.results;
-
-  // console.log("allCharacters", allCharacters);
 }
 
 // funksjonen for å vise characters
@@ -21,7 +19,6 @@ let matchCounterTxt = document.getElementById("match-counter-txt");
 let charactersList = document.querySelector(".charactersList");
 function displayCharacters(array) {
   charactersList.innerHTML = "";
-  // let numberOfMatches = 0;
 
   for (let i = 0; i < array.length; i++) {
     //Buttons cards
@@ -56,10 +53,6 @@ function displayCharacters(array) {
     let characterAge = document.createElement("p");
     characterAge.classList.add("character-age");
     characterAge.innerText = "Age: " + array[i].dob.age;
-
-    // let profileEmail = document.createElement("p");
-    // profileEmail.classList.add("profile-email");
-    // profileEmail.innerText = "📧 " + array[i].email;
 
     let profileLocation = document.createElement("p");
     profileLocation.classList.add("profile-location");

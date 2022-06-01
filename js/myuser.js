@@ -1,21 +1,5 @@
-// add image to page
-// const imageInput = document.querySelector("#image-input");
-// let uploaded_image = "";
-
-// imageInput.addEventListener("change", function () {
-//   const reader = new FileReader();
-//   reader.addEventListener("load", () => {
-//     uploaded_image = reader.result;
-//     document.querySelector(
-//       "#display-image"
-//     ).style.backgroundImage = `url(${uploaded_image})`;
-//     document.querySelector(
-//       "#user-image"
-//     ).style.backgroundImage = `url(${uploaded_image})`;
-//   });
-//   reader.readAsDataURL(this.files[0]);
-// });
-
+let infoContainer = document.querySelector(".info-container");
+let userContainer = document.querySelector(".user-container");
 // add & save image
 document.querySelector("#image-input").addEventListener("change", function () {
   const reader = new FileReader();
@@ -40,29 +24,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Show user information
 
-let infoContainer = document.querySelector(".info-container");
-let userContainer = document.querySelector(".user-container");
-
 function showInformation() {
   userContainer.classList.remove("hide");
   infoContainer.classList.add("hide");
-  //value from input
-  let firstNameInput = document.getElementById("firstname-input").value;
-  let lastNameInput = document.getElementById("lastname-input").value;
-  let ageInput = document.getElementById("age-input").value;
-  let genderInput = document.getElementById("gender-input").value;
-  let locationInput = document.getElementById("city-input").value;
-  let selectionInput = document.getElementById("interest-input").value;
-  // elemnts
-  document.getElementById("user-fname").innerText = `Name: ${firstNameInput}`;
-  document.getElementById("user-lname").innerText = lastNameInput;
-  document.getElementById("user-age").innerText = `Age: ${ageInput}`;
-  document.getElementById("user-gender").innerText = `Gender: ${genderInput}`;
-  document.getElementById("user-location").innerText = `City: ${locationInput}`;
-  document.getElementById(
-    "user-location"
-  ).innerText = `Interest in: ${selectionInput}`;
 }
+
+const firstNameInput = document.querySelector("#firstname-input");
+const firstName = document.querySelector("#first-name");
+const lastNameInput = document.querySelector("#lastname-input");
+const lastName = document.querySelector("#last-name");
+const ageInput = document.querySelector("#age-input");
+const age = document.querySelector("#age");
+const genderInput = document.querySelector("#gender-input");
+const gender = document.querySelector("#gender");
+const cityInput = document.querySelector("#city-input");
+const city = document.querySelector("#city");
+
+const saveBtn = document.querySelector("#save-btn");
+const storedFirstName = localStorage.getItem("firstname");
+const storedLastName = localStorage.getItem("lastname");
+const storedGender = localStorage.getItem("gender");
+const storedCity = localStorage.getItem("city");
+const storedAge = localStorage.getItem("age");
+
+if (firstNameInput) {
+  firstName.textContent = storedFirstName;
+}
+
+if (lastNameInput) {
+  lastName.textContent = storedLastName;
+}
+
+if (genderInput) {
+  gender.textContent = storedGender;
+}
+
+if (cityInput) {
+  city.textContent = storedCity;
+}
+if (ageInput) {
+  age.textContent = storedAge;
+}
+
+firstNameInput.addEventListener("input", (letter) => {
+  firstName.textContent = letter.target.value;
+});
+lastNameInput.addEventListener("input", (letter) => {
+  lastName.textContent = letter.target.value;
+});
+genderInput.addEventListener("input", (letter) => {
+  gender.textContent = letter.target.value;
+});
+cityInput.addEventListener("input", (letter) => {
+  city.textContent = letter.target.value;
+});
+ageInput.addEventListener("input", (letter) => {
+  age.textContent = letter.target.value;
+});
+
+const saveToLocalStorage = () => {
+  localStorage.setItem("firstname", firstName.textContent);
+  localStorage.setItem("lastname", lastName.textContent);
+  localStorage.setItem("gender", gender.textContent);
+  localStorage.setItem("age", age.textContent);
+
+  console.log(age);
+};
+
+saveBtn.addEventListener("click", saveToLocalStorage);
 
 function editUser() {
   userContainer.classList.add("hide");
