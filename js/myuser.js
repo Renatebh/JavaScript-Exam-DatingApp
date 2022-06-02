@@ -6,7 +6,7 @@ document.querySelector("#image-input").addEventListener("change", function () {
 
   reader.addEventListener("load", () => {
     localStorage.setItem("recent-image", reader.result);
-    // window.location.href = "myuser.html";
+
     const recentImageDataUrl = localStorage.getItem("recent-image");
     if (recentImageDataUrl) {
       document

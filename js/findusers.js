@@ -153,7 +153,6 @@ const myMatchArray = JSON.parse(localStorage.getItem("myMatches")) || [];
 function matchCharacter(array, i) {
   myMatchArray.unshift(array[i]);
   localStorage.setItem("myMatches", JSON.stringify(myMatchArray));
-  // initMap(array);
 }
 
 let showMatchesBtn = document
@@ -167,6 +166,7 @@ function displayMatches(array) {
   matchCounterTxt.innerHTML = `${myMatchArray.length}`;
   charactersList.innerHTML = "";
   matchList.innerHTML = "";
+  header.innerText = "Mine Matcher";
 
   for (let i = 0; i < array.length; i++) {
     let card = document.createElement("div");
@@ -241,7 +241,6 @@ function displayMatches(array) {
 
 // få ut kart
 function initMap(array) {
-  console.log(myMatchArray);
   for (let i = 0; i < myMatchArray.length; i++) {
     var options = {
       zoom: 6,
@@ -269,8 +268,6 @@ function deleteCharacter(i, array) {
   if (userAnswear === "ja") {
     array.splice(i, 1);
     localStorage.setItem("myMatches", JSON.stringify(myMatchArray));
-
-    // matchCounterTxt.innerHTML = `${myMatchArray.length}`;
   }
   displayMatches(array);
 }

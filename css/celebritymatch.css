@@ -50,7 +50,7 @@ header {
   color: #ffff;
   padding: 2rem 0 2rem 0;
   text-align: center;
-  height: 23rem;
+  height: 24rem;
 }
 
 h1 {
@@ -84,7 +84,7 @@ nav a {
 }
 
 q {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .start-btn-container {
@@ -131,10 +131,11 @@ main {
 
 h2 {
   text-align: center;
+  margin-top: 1rem;
 }
 
 input {
-  margin-top: 0.7rem;
+  margin: 0.7rem;
 }
 
 .quest-one,
@@ -154,7 +155,23 @@ input {
 }
 
 .btn {
-  margin-top: 2rem;
+  margin: 1rem;
+  padding: 1em;
+  border-radius: 10px;
+  border: 3px solid var(--accent-clr);
+  color: var(--accent-clr);
+  background: transparent;
+  cursor: pointer;
+}
+
+#show-celebrity {
+  padding: 1em;
+  margin: 1rem;
+  border-radius: 10px;
+  border: 3px solid var(--accent-clr);
+  color: var(--accent-clr);
+  background: transparent;
+  cursor: pointer;
 }
 
 .quest {
