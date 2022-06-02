@@ -12,7 +12,7 @@
   {
     "image": "./img/hepburn.jpg",
     "name": "Audrey Hepburn",
-    "text": "du ligner på Audrey Hepburn. Like elegant og sofistikert som deg er sjeldent."
+    "text": "du ligner på Audrey Hepburn. Så elegant og sofistikert som deg er sjeldent."
   },
   {
     "image": "./img/jolie.jpg",
@@ -22,7 +22,7 @@
   {
     "image": "./img/monroe.jpg",
     "name": "Marilyn Monroe",
-    "text": "du linger på Marilyn Monroe. Elegante sexbombe som de skal man lete lenge etter. "
+    "text": "du linger på Marilyn Monroe. Elegant sexbombe som deg skal man lete lenge etter. "
   },
   {
     "image": "./img/pitt.jpg",
@@ -32,6 +32,6 @@
   {
     "image": "./img/presley.jpg",
     "name": "Elvis Presley",
-    "text": "du lingner på Elvis Presley. Du en stjerne!"
+    "text": "du lingner på Elvis Presley. Du er en stjerne!"
   }
 ]

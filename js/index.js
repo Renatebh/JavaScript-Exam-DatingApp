@@ -16,6 +16,7 @@ function signup(e) {
   localStorage.setItem(username, json);
   console.log("user added");
   if (pass === conPass) {
+    alert("Success, du kan nå logge inn!");
     window.location.href = "index.html";
   } else if (pass !== conPass) {
     errorMessage.innerText = "Passwords must be the same";
@@ -36,7 +37,7 @@ function loginUser(e) {
   if ((user = null)) {
     alert("wrong username");
   } else if (username == data.username && pass == data.password) {
-    window.location.href = "myuser.html";
+    window.location.href = "findusers.html";
   } else {
     errorMessage.innerText = "Feil passord";
   }

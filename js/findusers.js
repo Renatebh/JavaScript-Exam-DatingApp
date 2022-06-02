@@ -164,7 +164,7 @@ let showMatchesBtn = document
 
 let matchList = document.querySelector(".match-list");
 function displayMatches(array) {
-  matchCounterTxt.innerHTML = `${myMatchArray.length + 1}`;
+  matchCounterTxt.innerHTML = `${myMatchArray.length}`;
   charactersList.innerHTML = "";
   matchList.innerHTML = "";
 
