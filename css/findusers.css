@@ -186,3 +186,8 @@ main {
   width: 400px;
   height: 400px;
 }
+
+#my-image {
+  border-radius: 50%;
+  width: 100px;
+}

@@ -6,7 +6,16 @@ document.querySelector("#image-input").addEventListener("change", function () {
 
   reader.addEventListener("load", () => {
     localStorage.setItem("recent-image", reader.result);
-    window.location.href = "myuser.html";
+    // window.location.href = "myuser.html";
+    const recentImageDataUrl = localStorage.getItem("recent-image");
+    if (recentImageDataUrl) {
+      document
+        .querySelector("#user-image")
+        .setAttribute("src", recentImageDataUrl);
+      document
+        .querySelector("#user-image-card")
+        .setAttribute("src", recentImageDataUrl);
+    }
   });
   reader.readAsDataURL(this.files[0]);
 });
@@ -87,6 +96,7 @@ const saveToLocalStorage = () => {
   localStorage.setItem("lastname", lastName.textContent);
   localStorage.setItem("gender", gender.textContent);
   localStorage.setItem("age", age.textContent);
+  localStorage.setItem("city", city.textContent);
 
   console.log(age);
 };

@@ -12,11 +12,12 @@ const loadCharacters = async () => {
 let allCharacters = [];
 function getAllCharacters(charactersArray) {
   allCharacters = charactersArray.results;
+  // displayCharacters(allCharacters);
 }
 
 // funksjonen for å vise characters
-let matchCounterTxt = document.getElementById("match-counter-txt");
 let charactersList = document.querySelector(".charactersList");
+let matchCounterTxt = document.getElementById("match-counter-txt");
 function displayCharacters(array) {
   charactersList.innerHTML = "";
 
@@ -83,15 +84,19 @@ function displayCharacters(array) {
         return;
       }
       if (userAnswear.toLowerCase() == "ja") {
-        matchCounterTxt.innerHTML = `${myMatchArray.length}`;
+        matchCounterTxt.innerHTML = `${myMatchArray.length + 1}`;
         matchCharacter(array, i);
-        console.log(myMatchArray);
-        deleteCharacter(i, array);
-        matchBtn[i].classList.add("hide");
+        deleteUser(i, array);
         initMap(myMatchArray, i);
       }
     });
   }
+}
+
+//
+function deleteUser(i, array) {
+  array.splice(i, 1);
+  displayCharacters(array);
 }
 
 // function for searching for users
@@ -116,45 +121,42 @@ searchBar.addEventListener("keyup", (e) => {
   }
 });
 
-//funskjonene for å filtrere og vise single menn, kvinner og gay
+//funskjonene for å filtrere og vise single menn, kvinner og homofile
 
 const displayFemaleBtn = document
   .getElementById("btn-female")
-  .addEventListener("click", filterGenderFemale);
+  .addEventListener("click", () => {
+    renderData("female");
+  });
 
 const displayMaleBtn = document
   .getElementById("btn-male")
-  .addEventListener("click", filterGenderMale);
+  .addEventListener("click", () => {
+    renderData("male");
+  });
 
-const diplayGay = document
+const displayGay = document
   .getElementById("btn-gay")
-  .addEventListener("click", filterRandomGays);
-
-let femaleArray = [];
-function filterGenderFemale() {
-  femaleArray = allCharacters.filter(function (data) {
-    return data.gender == "female";
+  .addEventListener("click", () => {
+    let randomGayArray = [];
+    for (let i = 0; i < 50; i++) {
+      let randomNumber = Math.floor(Math.random() * allCharacters.length);
+      randomGayArray.push(allCharacters[randomNumber]);
+    }
+    displayCharacters(randomGayArray);
   });
-  displayCharacters(femaleArray);
-  // console.log("femalearray", femaleArray);
-}
 
-let maleArray = [];
-function filterGenderMale() {
-  maleArray = allCharacters.filter(function (data) {
-    return data.gender == "male";
+const displayAll = document
+  .getElementById("btn-all")
+  .addEventListener("click", () => {
+    displayCharacters(allCharacters);
   });
-  displayCharacters(maleArray);
-  // console.log("malearray", maleArray);
-}
 
-function filterRandomGays() {
-  let randomGayArray = [];
-  for (let i = 0; i < 50; i++) {
-    let randomNumber = Math.floor(Math.random() * allCharacters.length);
-    randomGayArray.push(allCharacters[randomNumber]);
-  }
-  displayCharacters(randomGayArray);
+function renderData(gender) {
+  userGender = allCharacters.filter(function (data) {
+    return data.gender == gender;
+  });
+  displayCharacters(userGender);
 }
 
 //Funksjonen for å matche bruker å vise bruker
@@ -162,17 +164,15 @@ function filterRandomGays() {
 let myMatchArray = [];
 function matchCharacter(array, i) {
   myMatchArray.unshift(array[i]);
-  // initMap(myMatchArray);
-  // console.log("myMatchArray:", myMatchArray);
+  localStorage.setItem("myMatches", JSON.stringify(myMatchArray));
+  let storedMatches = JSON.parse(localStorage.getItem("myMatches"));
 }
+
 let showMatchesBtn = document
   .getElementById("show-matches-btn")
-  .addEventListener("click", showMatches);
-
-function showMatches() {
-  displayMatches(myMatchArray);
-  // initMap(myMatchArray);
-}
+  .addEventListener("click", () => {
+    displayMatches(myMatchArray);
+  });
 
 let matchList = document.querySelector(".match-list");
 
@@ -189,9 +189,10 @@ function displayMatches(array) {
     let characterAge = document.createElement("p");
     let profileEmail = document.createElement("p");
     let profileLocation = document.createElement("p");
+    let profilePhone = document.createElement("p");
     let profileBtn = document.createElement("button");
     let profileBtnHide = document.createElement("button");
-    let profilePhone = document.createElement("p");
+    let profileBtnDelete = document.createElement("button");
 
     card.classList.add("card");
     profileTop.classList.add("profile-top");
@@ -204,6 +205,7 @@ function displayMatches(array) {
     profilePhone.classList.add("profile-phone");
     profileBtn.classList.add("profile-btn");
     profileBtnHide.classList.add("profile-btn-hide");
+    profileBtnDelete.classList.add("profile-btn-delete");
 
     characterName.innerText =
       array[i].name.first + " " + array[i].name.last + " | " + array[i].gender;
@@ -211,9 +213,10 @@ function displayMatches(array) {
     characterAge.innerText = "Age: " + array[i].dob.age;
     profileEmail.innerText = "📧 " + array[i].email;
     profileLocation.innerText = "📍 " + array[i].location.city;
+    profilePhone.innerText = "📞" + array[i].phone;
     profileBtn.innerHTML = "Kart";
     profileBtnHide.innerHTML = "hide";
-    profilePhone.innerText = "📞" + array[i].phone;
+    profileBtnDelete.innerHTML = "Slett";
 
     charactersList.append(card);
     card.append(profileTop, profileBottom);
@@ -225,7 +228,8 @@ function displayMatches(array) {
       profilePhone,
       profileLocation,
       profileBtn,
-      profileBtnHide
+      profileBtnHide,
+      profileBtnDelete
     );
 
     let map = document.querySelector(".map");
@@ -234,17 +238,13 @@ function displayMatches(array) {
       initMap();
       map.classList.remove("hide");
     });
-  }
-  // kart
-  let profileBtnHide = document.querySelectorAll(".profile-btn-hide");
-
-  // for (let i = 0; i < profileBtn.length; i++) {
-  //   profileBtn[i].addEventListener("click", () => {});
-  // }
-
-  for (let i = 0; i < profileBtnHide.length; i++) {
-    profileBtnHide[i].addEventListener("click", () => {
+    let profileBtnsHide = document.querySelectorAll(".profile-btn-hide");
+    profileBtnsHide[i].addEventListener("click", () => {
       map.classList.add("hide");
+    });
+    let profileBtnsDelete = document.querySelectorAll(".profile-btn-delete");
+    profileBtnsDelete[i].addEventListener("click", () => {
+      deleteCharacter(i, array);
     });
   }
 }
@@ -256,10 +256,6 @@ function initMap() {
 
   for (let i = 0; i < myMatchArray.length; i++) {
     //new map
-    // let latitude = parseFloat(myMatchArray[i].location.coordinates.latitude);
-
-    // let longitude = parseFloat(myMatchArray[i].location.coordinates.longitude);
-
     var options = {
       zoom: 6,
       center: {
@@ -271,25 +267,23 @@ function initMap() {
     let map = new google.maps.Map(document.querySelector(".map"), options);
     let marker = new google.maps.Marker({
       position: {
-        lat: parseFloat(myMatchArray[i].location.coordinates),
+        lat: parseFloat(myMatchArray[i].location.coordinates.latitude),
         lng: parseFloat(myMatchArray[i].location.coordinates.longitude),
       },
       map: map,
       icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
     });
-    console.log(latitude, longitude);
   }
 }
 
 //funksjonen for å slette bruker
 function deleteCharacter(i, array) {
-  // let userAnswear = prompt(
-  //   "Do you want to delete this lover from your list? yes/no"
-  // );
-  // if (userAnswear.toLowerCase() == "yes") {
-  array.splice(i, 1);
-  matchCounterTxt.innerHTML = `${myMatchArray.length}`;
-
+  const userAnswear = prompt("vil du slette? skriv ja");
+  if (userAnswear === "ja") {
+    array.splice(i, 1);
+    matchCounterTxt.innerHTML = `${myMatchArray.length}`;
+  }
   displayCharacters(array);
 }
+
 loadCharacters();
